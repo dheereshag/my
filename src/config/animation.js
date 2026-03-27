@@ -11,7 +11,7 @@ export const AnimationConfig = Object.freeze({
     height: 550,
   },
   bars: {
-    numLines: 50,
+    numLines: 35,
     lineColor: '#444',
     barFill: '#5E5D59',
     background: '#F0EEE6',
