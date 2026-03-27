@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Canvas2DStrategy } from './rendering/strategies/Canvas2DStrategy';
 import { Renderer } from './rendering/Renderer';
 import { AnimationConfig } from './config/animation';
@@ -9,11 +9,10 @@ import { Noise } from './patterns/Noise';
 import { BarShape } from './shapes/BarShape';
 import { generateBarPattern, matchBars } from './patterns/BarPatternGenerator';
 
-const SlidingEaseVerticalBars = () => {
+const SlidingEaseVerticalBars = ({ speed }) => {
   const canvasRef = useRef(null);
   const animatorRef = useRef(null);
   const rendererRef = useRef(null);
-  const [speed, setSpeed] = useState(AnimationConfig.speed);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -134,30 +133,8 @@ const SlidingEaseVerticalBars = () => {
   }, [speed]);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <div style={{ width: `${AnimationConfig.canvas.width}px`, height: `${AnimationConfig.canvas.height}px`, backgroundColor: AnimationConfig.bars.background }}>
-        <canvas ref={canvasRef} style={{ display: 'block' }} />
-      </div>
-      <div style={{ marginTop: '20px', marginBottom: '40px', width: '100%', maxWidth: '300px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <label htmlFor="speed-slider" style={{ fontSize: '14px', fontFamily: 'sans-serif', color: '#444', fontWeight: 'bold' }}>
-            Animation Speed
-          </label>
-          <span style={{ fontSize: '14px', fontFamily: 'monospace', color: '#666', backgroundColor: '#e0e0e0', padding: '2px 6px', borderRadius: '4px' }}>
-            {speed.toFixed(3)}
-          </span>
-        </div>
-        <input
-          id="speed-slider"
-          type="range"
-          min="0.001"
-          max="0.02"
-          step="0.001"
-          value={speed}
-          onChange={(e) => setSpeed(parseFloat(e.target.value))}
-          style={{ width: '100%' }}
-        />
-      </div>
+    <div style={{ width: `${AnimationConfig.canvas.width}px`, height: `${AnimationConfig.canvas.height}px`, backgroundColor: AnimationConfig.bars.background }}>
+      <canvas ref={canvasRef} style={{ display: 'block' }} />
     </div>
   );
 };
