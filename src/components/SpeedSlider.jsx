@@ -1,5 +1,3 @@
-import React from 'react';
-
 const SpeedSlider = ({ speed, setSpeed }) => {
   return (
     <div style={{ marginTop: '20px', width: '100%', maxWidth: '300px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
